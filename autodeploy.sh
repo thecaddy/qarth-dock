@@ -17,6 +17,7 @@ sudo sed -i '$acomplete -F _docker docker' /etc/bash_completion.d/docker.io
 sudo apt-get install -y nodejs npm
 
 #get app
+
 mkdir /home/app
 cd /home/app
 sudo git clone https://github.com/thecaddy/qarth-dock
@@ -24,9 +25,8 @@ cd qarth-dock
 #install gith
 sudo npm install
 
-#turn it back on if it crashes for any reason
-sudo npm install -g forever
-forever start hook.js
+#start the server with forever wrapper
+node server-start.js
 
 ################################################################################
 ################################################################################
