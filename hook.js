@@ -2,7 +2,7 @@
 //Import execFile, to run our bash script
 
 var execOptions = {
-     //maxBuffer: 1024 * 1024 // 1mb
+     maxBuffer: 1024 * 1024 * 8 * 8 // 1mb
 }
 
 var exec = require('child_process').exec;
@@ -15,11 +15,10 @@ var github = githubhook({
 github.listen();
 
 github.on('*', function (event, repo, ref, data) {
-  console.log('1');
   if(ref==='refs/heads/master'
   && repo==='qarth'
   && event==='push'){
-    console.log('made it');
+    console.log('BUILD TRIGGERED');
     child = exec('sh deploy.sh',
       function (error, stdout, stderr) {
         console.log('stdout: ' + stdout);

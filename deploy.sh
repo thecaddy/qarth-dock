@@ -34,8 +34,7 @@ fi
 echo '>>> Starting new container'
 sudo docker run -d -p 49160:8080 $ID
 
-#sudo docker rm $(sudo docker ps -a | grep 'Exit' | awk '{print $1}')
-
+sudo docker rm $(sudo docker ps -a -q)
 
 echo '>>> Cleaning up images'
 sudo docker images | grep "<none>" | head -n 1 | awk 'BEGIN { FS = "[ \t]+" } { print $3 }'  | while read -r id ; do  echo ">>> Removing $id"; sudo docker rmi $id; done
