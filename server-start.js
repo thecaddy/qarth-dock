@@ -1,5 +1,6 @@
 var forever = require('forever-monitor');
 
+
 var child = new (forever.Monitor)('hook.js', {
   silent: false,
   options: []
@@ -10,3 +11,5 @@ child.on('exit', function () {
 });
 
 child.start();
+
+console.log("Server Started");

@@ -21,3 +21,5 @@ gith({
             });
     }
 });
+
+console.log('Hook Started');

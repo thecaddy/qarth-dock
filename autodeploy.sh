@@ -14,7 +14,8 @@ sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker
 sudo sed -i '$acomplete -F _docker docker' /etc/bash_completion.d/docker.io
 
 #install node
-sudo apt-get install -y nodejs npm
+sudo apt-get install nodejs
+sudo apt-get install npm
 
 #get app
 
