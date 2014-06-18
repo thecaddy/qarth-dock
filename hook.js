@@ -7,8 +7,8 @@ var execOptions = {
 
 var exec = require('child_process').exec;
 
-var githubhook = require('./server.js');
-var github = githubhook({
+var hookServer = require('server.js');
+var github = hookServer({
   port:9003
 });
 

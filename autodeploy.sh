@@ -9,6 +9,8 @@ sudo apt-get install git
 
 #install upstart
 sudo apt-get install upstart
+#copy upstart to /etc/init/
+sudo cp /home/app/qarth-app/qarth-dock.conf /etc/init/qarth-dock.conf
 
 #install docker
 sudo apt-get update
@@ -31,8 +33,11 @@ cd qarth-dock
 #install gith
 sudo npm install
 
+sudo mkdir /var/log/hook
+sudo chown www-hook:www-hook /var/log/hook
+
 #start the server with forever wrapper
-nodejs server-start.js
+sudo nodejs server-start.js
 
 ################################################################################
 ################################################################################
