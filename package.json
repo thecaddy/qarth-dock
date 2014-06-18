@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "dependencies": {
     "forever-monitor": "^1.2.3",
-    "gith": "^1.0.4"
+    "gith": "^1.0.4",
+    "hookshot": "0.0.2"
   },
   "devDependencies": {},
   "license": "MIT"
