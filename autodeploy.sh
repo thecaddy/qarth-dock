@@ -7,6 +7,9 @@
 #install git
 sudo apt-get install git
 
+#install upstart
+sudo apt-get install upstart
+
 #install docker
 sudo apt-get update
 sudo apt-get install docker.io
