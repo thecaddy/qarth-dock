@@ -1,6 +1,6 @@
 // Listen on port 9001
 //var gith = require('gith').create( 9003 );
-var hookshot = require('hookshot');
+//var hookshot = require('hookshot');
 // Import execFile, to run our bash script
 
 var execOptions = {
@@ -22,9 +22,24 @@ var execFile = require('child_process').execFile;
 //             });
 //     }
 // });
+//
+// hookshot('refs/heads/master', function(info) {
+//   console.log('made it', info);
+// }).listen(9003);
 
-hookshot('refs/heads/master', function(info) {
-  console.log('made it', info);
-}).listen(9003);
+var githubhook = require('githubhook');
+var github = githubhook({
+  port:9003
+});
+
+github.listen();
+
+github.on('*', function (event, repo, ref, data) {
+  console.log('made it');
+  console.log('e', event);
+  console.log('r', repo);
+  console.log('ef', ref);
+  console.log('data', data);
+});
 
 console.log('Hook Started');
