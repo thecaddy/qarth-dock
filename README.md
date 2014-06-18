@@ -3,5 +3,5 @@ qarth-dock
 users:
   root
   thecaddy
-  www-hook
-  www-data
+  www-hook  - Not setup
+  www-data  - Not setup

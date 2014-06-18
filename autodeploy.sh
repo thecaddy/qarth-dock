@@ -9,8 +9,6 @@ sudo apt-get install git
 
 #install upstart
 sudo apt-get install upstart
-#copy upstart to /etc/init/
-sudo cp /home/app/qarth-app/qarth-dock.conf /etc/init/qarth-dock.conf
 
 #install docker
 sudo apt-get update
@@ -26,15 +24,20 @@ sudo apt-get install npm
 sudo iptables -I INPUT 4 -p tcp --dport 9003 -j ACCEPT
 
 #get app
-mkdir /home/app
-cd /home/app
+mkdir ~/ #translates to /home/[user]/
+cd ~/
 sudo git clone https://github.com/thecaddy/qarth-dock
 cd qarth-dock
 #install gith
 sudo npm install
 
-sudo mkdir /var/log/hook
-sudo chown www-hook:www-hook /var/log/hook
+
+#copy upstart to /etc/init/
+sudo cp ~/qarth-app/qarth-dock.conf /etc/init/qarth-dock.conf
+
+#setup log for user
+#sudo mkdir /var/log/hook
+#sudo chown thecaddy:thecaddy /var/log/hook
 
 #start the server with forever wrapper
 sudo nodejs server-start.js
