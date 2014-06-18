@@ -1,7 +1,7 @@
 var forever = require('forever-monitor');
 
 
-var child = new (forever.Monitor)('hook.js', {
+var child = new (forever.Monitor)('./hook.js', {
   silent: false,
   options: []
 });
