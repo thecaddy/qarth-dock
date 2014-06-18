@@ -33,7 +33,7 @@ sudo npm install
 
 
 #copy upstart to /etc/init/
-sudo cp ~/qarth-app/qarth-dock.conf /etc/init/qarth-dock.conf
+sudo cp ~/qarth-dock/qarth-dock.conf /etc/init/qarth-dock.conf
 
 #setup log for user
 #sudo mkdir /var/log/hook

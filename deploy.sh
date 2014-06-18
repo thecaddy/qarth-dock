@@ -14,7 +14,7 @@ echo $CID
 echo '>>> Build new image'
 sudo docker build -t thecaddy/qarth:master . # | tee /tmp/docker_build_result.log)
 #RESULT=$(cat /tmp/docker_build_result.log | tail -n 1)
-ID=$(docker images | grep "thecaddy/qarth" | awk '{print $3}')
+ID=$(sudo docker images | grep "thecaddy/qarth" | awk '{print $3}')
 echo '>>> ID: ' $ID
 if [ "$ID" == "0" ];
 then
@@ -31,13 +31,14 @@ then
   sudo docker rm $CID
 fi
 
-echo '>>> Starting new container'
+echo '>>> Starting new container $ID'
 sudo docker run -d -p 49160:8080 $ID
+
+echo '>>> Cleaning up images'
+sudo docker images | grep "^<none>" | head -n 1 | awk 'BEGIN { FS = "[ \t]+" } { print $3 }'  | while read -r id ; do  echo ">>> Removing $id"; sudo docker rmi $id; done
 
 sudo docker rm $(sudo docker ps -a -q)
 
-echo '>>> Cleaning up images'
-sudo docker images | grep "<none>" | head -n 1 | awk 'BEGIN { FS = "[ \t]+" } { print $3 }'  | while read -r id ; do  echo ">>> Removing $id"; sudo docker rmi $id; done
 
 ################################################################################
 ################################################################################
