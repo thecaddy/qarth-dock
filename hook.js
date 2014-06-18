@@ -12,6 +12,7 @@ gith({
     repo: 'thecaddy/qarth',
     branch: 'master'
 }).on( 'all', function( payload ) {
+    console.log('Executing Payload:', payload);
     if( payload.branch === 'master' )
     {
             // Exec a shell script
