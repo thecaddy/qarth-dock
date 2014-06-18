@@ -1,0 +1,10 @@
+{
+  "author": "Joel Trost",
+  "name": "qarth-dock",
+  "version": "0.0.1",
+  "dependencies": {
+    "gith": "^1.0.4"
+  },
+  "devDependencies": {},
+  "license": "MIT"
+}
