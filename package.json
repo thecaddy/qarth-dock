@@ -3,8 +3,7 @@
   "name": "qarth-dock",
   "version": "0.0.1",
   "dependencies": {
-    "forever-monitor": "^1.2.3",
-    "hookshot": "0.0.2"
+    "forever-monitor": "^1.2.3"
   },
   "devDependencies": {},
   "license": "MIT"
