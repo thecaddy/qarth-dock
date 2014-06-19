@@ -7,6 +7,7 @@
 #!/usr/bin/env bash
 set -e
 
+#possible to have 2 containers on 2 dif ports making illusion of 2 servers
 echo '>>> Get old container id'
 CID=$(sudo docker ps | grep "thecaddy/qarth" | awk '{print $1}')
 echo $CID
@@ -35,9 +36,10 @@ echo '>>> Starting new container $ID'
 sudo docker run -d -p 49160:8080 $ID
 
 echo '>>> Cleaning up images'
-sudo docker images | grep "^<none>" | head -n 1 | awk 'BEGIN { FS = "[ \t]+" } { print $3 }'  | while read -r id ; do  echo ">>> Removing $id"; sudo docker rmi $id; done
-
+#removes closed containers
 sudo docker rm $(sudo docker ps -a -q)
+#removes <none> images
+sudo docker rmi $(sudo docker images | grep "^<none>" | awk '{print $3}')
 
 
 ################################################################################
