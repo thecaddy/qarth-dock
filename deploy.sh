@@ -39,7 +39,7 @@ echo '>>> Cleaning up images'
 #removes closed containers
 sudo docker rm $(sudo docker ps -a -q)
 #removes <none> images
-sudo docker rmi $(sudo docker images | grep "^<none>" | awk '{print $3}')
+sudo docker rmi $(sudo docker images | grep "<none>" | awk '{print $3}')
 
 
 ################################################################################

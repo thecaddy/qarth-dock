@@ -23,8 +23,14 @@ sudo sed -i '$acomplete -F _docker docker' /etc/bash_completion.d/docker.io
 sudo apt-get install nodejs
 sudo apt-get install npm
 
-# (I)nserts this rule after the 4th iptables firewall rule
-sudo iptables -I INPUT 4 -p tcp --dport 9003 -j ACCEPT
+#create firewall
+sudo cp ~/myr-build/iptables.firewall.rules /etc/iptables.firewall.rules
+sudo iptables-restore < /etc/iptables.firewall.rules
+sudo cp ~/myr-build/firewall /etc/network/if-pre-up.d/firewall
+sudo chmod +x /etc/network/if-pre-up.d/firewall
+
+#install fail2ban, prevents several retries into server
+sudo apt-get install fail2ban
 
 #get app
 mkdir ~/ #translates to /home/[user]/
@@ -36,14 +42,20 @@ sudo npm install
 
 
 #copy upstart to /etc/init/
-sudo cp ~/qarth-dock/qarth-dock.conf /etc/init/qarth-dock.conf
+sudo cp ~/myr-build/qarth-dock.conf /etc/init/qarth-dock.conf
 
 #setup log for user
 #sudo mkdir /var/log/hook
 #sudo chown thecaddy:thecaddy /var/log/hook
 
-#start the server with forever wrapper
-sudo nodejs server-start.js
+#sets root on deploy.sh
+#add this to /etc/sudoers
+#thecaddy ALL=NOPASSWD:/home/thecaddy/myr-build/deploy.sh
+
+#start the upstart service
+sudo start qarth-dock
+
+
 
 ################################################################################
 ################################################################################
